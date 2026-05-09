@@ -1,12 +1,19 @@
+import BackOffice from "./Main Components/BackOffice"
+import Hero from "./Main Components/Hero"
+import Navbar from "./Main Components/Navbar"
+import PosPayment from "./Main Components/PosPayment"
 
 
 function App() {
  
 
   return (
-    <>
-      <h1 className="text-4xl font-bold text-orange">Adrito Rafsan</h1>
-    </>
+   <div className=" max-h-full max-w-[1440px] mx-auto">
+      <Navbar />
+      <Hero />
+      <BackOffice />
+      <PosPayment />
+   </div>
   )
 }
 
