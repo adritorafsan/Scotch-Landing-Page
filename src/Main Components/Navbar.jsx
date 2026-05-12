@@ -3,10 +3,29 @@ import logo from "../assets/logo.png";
 import FilledButton from "../Sub Components/FilledButton";
 import NrmlButton from "../Sub Components/NrmlButton";
 import { FiMenu, FiX } from "react-icons/fi"; // Using react-icons for the toggle
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const Navlinks = ["Products", "Pricing", "About", "Blog"];
+    useGSAP(()=>{
+        gsap.fromTo('.navbar',
+            {
+                opacity:0,
+                x:-25,
+                rotate:-5
+            },
+            {
+                opacity:1,
+                x:0,
+                rotate:0,
+                duration:1,
+                stagger:0.2,
+                ease:"power1.inOut"
+            }
+        )
+    },[])
 
     return (
         <div className="sticky top-0 z-50 bg-transparent backdrop-blur-md border-b border-b-secondary/20 shadow-2xl">
@@ -16,7 +35,7 @@ const Navbar = () => {
                 <div className="flex justify-center items-center gap-x-8 lg:gap-x-28">
                     <div 
                         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
-                        className="flex justify-center items-center gap-x-2 cursor-pointer group"
+                        className="flex justify-center items-center gap-x-2 cursor-pointer group navbar"
                     >
                         <img src={logo} alt="Logo" className="w-8 h-8 md:w-auto" />
                         <h1 className="font-medium text-xl text-primary group-hover:text-secondary">Scotch</h1>
@@ -26,7 +45,7 @@ const Navbar = () => {
                     <ul className="hidden md:flex justify-center items-center gap-x-6">
                         {Navlinks.map((items, index) => (
                             <li 
-                                className="text-lg lg:text-xl cursor-pointer font-medium text-primary hover:text-secondary transition-all duration-300 ease-in-out whitespace-nowrap" 
+                                className="text-lg navbar lg:text-xl cursor-pointer font-medium text-primary hover:text-secondary transition-all duration-300 ease-in-out whitespace-nowrap" 
                                 key={index}
                             >
                                 {items}
@@ -69,7 +88,7 @@ const Navbar = () => {
                         </li>
                     ))}
                     {/* Buttons for very small screens that hide the desktop buttons */}
-                    <div className="flex flex-col items-center gap-y-4 sm:hidden pt-4">
+                    <div className="flex flex-col items-center gap-y-4 sm:hidden pt-4 navbar">
                         <NrmlButton Text={"Login"} />
                         <FilledButton Text={"Book a demo"} bgColor={"bg-white"} />
                     </div>
